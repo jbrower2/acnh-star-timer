@@ -1,0 +1,28 @@
+<html>
+<head>
+    <script>
+        const [,startHour,startMinute] = /^(\d+):(\d+)$/.exec(prompt("Start time (hh:mm):"));
+        const startTime = 60*(parseInt(startMinute,10) + 60*parseInt(startHour,10));
+        const start = new Date().getTime();
+        function recordTime() {
+            let time = Math.round((new Date().getTime() - start) / 1000) + startTime;
+            const seconds = time % 60;
+            time = Math.floor(time / 60);
+            const minutes = time % 60;
+            time = Math.floor(time / 60);
+            const hours = time;
+            const output = document.getElementById('output');
+            output.innerText += hours.toString().padStart(2,'0');
+            output.innerText += ':';
+            output.innerText += minutes.toString().padStart(2,'0');
+            output.innerText += ':';
+            output.innerText += seconds.toString().padStart(2,'0');
+            output.innerText += '\n';
+        }
+    </script>
+</head>
+<body>
+    <input type="button" value="Click" onclick="recordTime()" style="width:200px;height:100px;" />
+    <pre id="output"></pre>
+</body>
+</html>

@@ -6,18 +6,8 @@
         const start = new Date().getTime();
         function recordTime() {
             let time = Math.round((new Date().getTime() - start) / 1000) + startTime;
-            const seconds = time % 60;
-            time = Math.floor(time / 60);
-            const minutes = time % 60;
-            time = Math.floor(time / 60);
-            const hours = time;
-            const output = document.getElementById('output');
-            output.innerText += hours.toString().padStart(2,'0');
-            output.innerText += ':';
-            output.innerText += minutes.toString().padStart(2,'0');
-            output.innerText += ':';
-            output.innerText += seconds.toString().padStart(2,'0');
-            output.innerText += '\n';
+            const seconds = time % 60, minutes = (time = Math.floor(time / 60)) % 60, hours = Math.floor(time / 60);
+            document.getElementById('output').innerText += `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}\n`;
         }
     </script>
 </head>
